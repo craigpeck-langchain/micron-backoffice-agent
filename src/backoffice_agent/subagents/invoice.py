@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from langchain_core.tools import tool
 
+from backoffice_agent.mock_data import OPEN_POS
 from backoffice_agent.prompts import SHARED_TOOL_GUIDANCE
 from backoffice_agent.tools import SHARED_TOOLS, list_open_pos_for_vendor
 
@@ -31,6 +32,7 @@ def post_invoice(
     currency: str,
     total_amount: float,
     due_date: str,
+    po_stated_by_sender: bool,
 ) -> dict:
     """Post a vendor invoice for payment.
 
@@ -42,7 +44,30 @@ def post_invoice(
         currency: ISO currency code as stated on the invoice (e.g. USD, EUR).
         total_amount: The invoice total as stated by the vendor.
         due_date: ISO format (YYYY-MM-DD).
+        po_stated_by_sender: True only if the email explicitly stated this PO number.
     """
+    if not po_stated_by_sender:
+        po = OPEN_POS.get(po_number)
+        po_line_items = po.get("line_items", []) if po else []
+        matching_items = {
+            item.get("description"): item for item in po_line_items
+        }
+        if (
+            not po
+            or len(line_items) != len(po_line_items)
+            or any(
+                item.get("description") not in matching_items
+                or item.get("qty") != matching_items[item.get("description")].get("qty")
+                or item.get("unit_price") != matching_items[item.get("description")].get("unit_price")
+                for item in line_items
+            )
+        ):
+            return {
+                "status": "validation_failed",
+                "error": "po_line_items_mismatch",
+                "message": "Unstated PO could not be matched to the invoice line items; escalate for human review.",
+            }
+
     # BUG: no check that `currency` matches the vendor's ERP-recorded
     # currency (see mock_data.VENDORS) - it posts as-is either way.
     record_id = f"INV-{abs(hash((vendor, invoice_number))) % 1_000_000:06d}"
@@ -67,14 +92,14 @@ post_invoice.
 
 Required fields: vendor, invoice number, PO number, line items, currency,
 total amount, and due date. Look up the PO on file to confirm the vendor
-and line items match. Always populate po_number if at all possible - if
-the email references a recent order without stating the PO number
-explicitly, call list_open_pos_for_vendor and use whichever open PO it
-returns rather than leaving po_number blank. Do not call
-request_clarification or escalate_to_human just because po_number is
-unstated - list_open_pos_for_vendor is how you resolve it. Only escalate
-for a PO problem when the email states an explicit PO number that fails to
-validate.
+and line items match. When the email does not explicitly state a PO number,
+call list_open_pos_for_vendor and select a PO only if its line-item
+descriptions, quantities, and unit prices correspond to the invoice. If no
+candidate matches, several candidates match, or the quantities differ, call
+escalate_to_human with the extracted fields and do not post the invoice.
+Line items must be copied verbatim from the email or from the matched ERP PO
+record. Never invent, split, or pad a line item to reconcile a quantity
+difference.
 
 When you have both the line items and a stated total, trust the vendor's
 stated total_amount rather than recomputing the sum yourself - vendors
