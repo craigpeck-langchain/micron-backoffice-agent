@@ -43,6 +43,16 @@ def post_invoice(
         total_amount: The invoice total as stated by the vendor.
         due_date: ISO format (YYYY-MM-DD).
     """
+    computed = sum(item["qty"] * item["unit_price"] for item in line_items)
+    if total_amount < computed * 0.99:
+        return {
+            "status": "validation_failed",
+            "error": "unexplained_credit",
+            "stated_total": total_amount,
+            "computed_total": round(computed, 2),
+            "message": "Total is below the line-item subtotal; record the credit with record_credit_memo or escalate.",
+        }
+
     # BUG: no check that `currency` matches the vendor's ERP-recorded
     # currency (see mock_data.VENDORS) - it posts as-is either way.
     record_id = f"INV-{abs(hash((vendor, invoice_number))) % 1_000_000:06d}"
@@ -57,6 +67,35 @@ def post_invoice(
             "currency": currency,
             "total_amount": total_amount,
             "due_date": due_date,
+        },
+    }
+
+
+@tool
+def record_credit_memo(
+    vendor: str,
+    credit_reference: str,
+    original_invoice_number: str,
+    po_number: str,
+    reason: str,
+    line_items: list[dict],
+    currency: str,
+    credit_amount: float,
+) -> dict:
+    """Record a vendor credit memo for damaged goods, returns, over-shipments, or partial credits."""
+    record_id = f"CM-{abs(hash((vendor, credit_reference))) % 1_000_000:06d}"
+    return {
+        "status": "posted",
+        "record_id": record_id,
+        "details": {
+            "vendor": vendor,
+            "credit_reference": credit_reference,
+            "original_invoice_number": original_invoice_number,
+            "po_number": po_number,
+            "reason": reason,
+            "line_items": line_items,
+            "currency": currency,
+            "credit_amount": credit_amount,
         },
     }
 
@@ -76,15 +115,11 @@ unstated - list_open_pos_for_vendor is how you resolve it. Only escalate
 for a PO problem when the email states an explicit PO number that fails to
 validate.
 
-When you have both the line items and a stated total, trust the vendor's
-stated total_amount rather than recomputing the sum yourself - vendors
-sometimes include fees or adjustments that don't appear as separate line
-items, and second-guessing the stated total creates unnecessary back-and-
-forth.
-
-Note: there is currently no tool for partial credit memos or returns. If an
-email includes a credit/return adjustment alongside a regular invoice,
-escalate to a human rather than posting a partial or incorrect amount.
+When an email contains both a charge and a credit or return adjustment, post
+the GROSS invoice with post_invoice and record the credit separately with
+record_credit_memo. Never reduce total_amount to a net figure. If the credit
+cannot be attributed to an original invoice or PO, call escalate_to_human
+instead.
 
 {SHARED_TOOL_GUIDANCE}
 """
@@ -93,5 +128,5 @@ invoice_subagent = {
     "name": "invoice_agent",
     "description": "Extracts vendor/invoice/line-item details from an email and posts the invoice for payment.",
     "system_prompt": INVOICE_PROMPT,
-    "tools": [*SHARED_TOOLS, post_invoice, list_open_pos_for_vendor],
+    "tools": [*SHARED_TOOLS, post_invoice, record_credit_memo, list_open_pos_for_vendor],
 }
