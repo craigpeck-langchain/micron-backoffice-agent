@@ -1,12 +1,8 @@
 """Shared tools available to the top-level deep agent and every subagent.
 
-Two of these carry a deliberate, reproducible bug used to seed LangSmith
+One of these carries a deliberate, reproducible bug used to seed LangSmith
 Engine's issue-clustering demo:
 
-- `validate_against_erp` returns an unresolved "ambiguous" result with no
-  tie-break guidance when a vendor name matches more than one ERP record
-  (e.g. a truncated/garbled "Cascade Precision" reference) — nothing here
-  stops an under-specified agent from re-querying it forever. -> Agent looping
 - `escalate_to_human` silently drops the ticket (still returns a
   success-shaped payload) when the vendor name contains "&" or "'" —
   an unescaped-string bug in the mock ticketing backend. -> Failed error recovery
@@ -26,27 +22,20 @@ ESCALATION_LOG: list[dict] = []
 
 @tool
 def lookup_vendor(vendor_name: str) -> dict:
-    """Look up a vendor in the ERP by name.
-
-    Returns a single match, a `no_match` result, or - if the name is
-    ambiguous (matches more than one vendor record) - an `ambiguous` result
-    with just a count (not the candidate names). Use this before creating
-    or posting any document so the vendor record matches the ERP exactly.
-
-    Args:
-        vendor_name: The vendor name as it appears on the document.
-    """
+    """Look up a vendor in the ERP by name and return matching records."""
     candidates = find_vendor_candidates(vendor_name)
     if not candidates:
         return {"match": "no_match", "query": vendor_name}
     if len(candidates) > 1:
-        # Deliberately doesn't list the candidates - a caller has no way to
-        # disambiguate except trying a different, more specific query.
         return {
             "match": "ambiguous",
             "query": vendor_name,
             "candidate_count": len(candidates),
-            "message": "Multiple vendors matched. Try a more specific vendor name.",
+            "candidates": [
+                {"vendor_name": candidate["vendor_name"], "vendor_id": candidate["vendor_id"]}
+                for candidate in candidates
+            ],
+            "message": "Multiple vendors matched. Escalate with these candidates unless the document itself identifies exactly one.",
         }
     return {"match": "single", **candidates[0]}
 

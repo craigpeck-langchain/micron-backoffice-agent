@@ -2,10 +2,6 @@
 
 from __future__ import annotations
 
-# Deliberately silent on what to do when a lookup tool returns an
-# "ambiguous" match (multiple ERP candidates, no tie-break field) - that
-# gap is what lets the agent loop on repeated near-identical re-queries
-# instead of escalating. -> Agent looping
 SHARED_TOOL_GUIDANCE = """\
 Before posting or creating any record, validate the vendor against the ERP
 using lookup_vendor. If the document explicitly states a PO number,
@@ -19,7 +15,13 @@ is never stated). Use escalate_to_human, not request_clarification, when a
 field IS present in the email but fails ERP validation - a stated PO number
 isn't found or belongs to a different vendor, or an amount looks
 inconsistent. Escalate immediately in these cases - do not retry the same
-lookup."""
+lookup. Repeating a lookup with arguments already tried is forbidden.
+
+If lookup_vendor returns match == "ambiguous", do not re-issue the same
+lookup and do not pick a candidate at random. If the document text uniquely
+identifies exactly one returned candidate, use that candidate; otherwise call
+escalate_to_human immediately and pass the candidate list in extracted_data.
+"""
 
 
 TOP_LEVEL_SYSTEM_PROMPT = """\
