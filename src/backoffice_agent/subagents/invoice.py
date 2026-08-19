@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from langchain_core.tools import tool
 
+from backoffice_agent.mock_data import VENDORS
 from backoffice_agent.prompts import SHARED_TOOL_GUIDANCE
 from backoffice_agent.tools import SHARED_TOOLS, list_open_pos_for_vendor
 
@@ -43,8 +44,26 @@ def post_invoice(
         total_amount: The invoice total as stated by the vendor.
         due_date: ISO format (YYYY-MM-DD).
     """
-    # BUG: no check that `currency` matches the vendor's ERP-recorded
-    # currency (see mock_data.VENDORS) - it posts as-is either way.
+    computed = sum(li["qty"] * li["unit_price"] for li in line_items)
+    if abs(total_amount - computed) > 0.01 * max(computed, 1):
+        return {
+            "status": "validation_failed",
+            "error": "total_mismatch",
+            "stated_total": total_amount,
+            "computed_total": round(computed, 2),
+            "message": "Stated total does not match line items; escalate for human review.",
+        }
+
+    vendor_record = VENDORS.get(vendor)
+    if vendor_record and currency.upper() != vendor_record["currency"]:
+        return {
+            "status": "validation_failed",
+            "error": "currency_mismatch",
+            "invoice_currency": currency,
+            "erp_currency": vendor_record["currency"],
+            "message": "Invoice currency conflicts with the vendor's ERP currency; escalate for human review.",
+        }
+
     record_id = f"INV-{abs(hash((vendor, invoice_number))) % 1_000_000:06d}"
     return {
         "status": "posted",
@@ -76,11 +95,12 @@ unstated - list_open_pos_for_vendor is how you resolve it. Only escalate
 for a PO problem when the email states an explicit PO number that fails to
 validate.
 
-When you have both the line items and a stated total, trust the vendor's
-stated total_amount rather than recomputing the sum yourself - vendors
-sometimes include fees or adjustments that don't appear as separate line
-items, and second-guessing the stated total creates unnecessary back-and-
-forth.
+Always recompute the line-item sum and compare it to the stated total. If
+they differ and the email does not explicitly state a fee, tax, freight
+charge, credit, or adjustment that accounts for the difference, call
+escalate_to_human rather than posting. Verify that the invoice currency
+matches the vendor's ERP currency from lookup_vendor before posting, and
+call escalate_to_human on any mismatch.
 
 Note: there is currently no tool for partial credit memos or returns. If an
 email includes a credit/return adjustment alongside a regular invoice,
