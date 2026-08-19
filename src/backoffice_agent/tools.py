@@ -1,15 +1,14 @@
 """Shared tools available to the top-level deep agent and every subagent.
 
-Two of these carry a deliberate, reproducible bug used to seed LangSmith
+One of these carries a deliberate, reproducible bug used to seed LangSmith
 Engine's issue-clustering demo:
 
 - `validate_against_erp` returns an unresolved "ambiguous" result with no
   tie-break guidance when a vendor name matches more than one ERP record
   (e.g. a truncated/garbled "Cascade Precision" reference) — nothing here
   stops an under-specified agent from re-querying it forever. -> Agent looping
-- `escalate_to_human` silently drops the ticket (still returns a
-  success-shaped payload) when the vendor name contains "&" or "'" —
-  an unescaped-string bug in the mock ticketing backend. -> Failed error recovery
+- `escalate_to_human` reports success without checking that its ticket write
+  succeeded. -> Failed error recovery
 """
 
 from __future__ import annotations
@@ -18,9 +17,7 @@ from langchain_core.tools import tool
 
 from backoffice_agent.mock_data import OPEN_POS, find_open_pos_for_vendor, find_vendor_candidates
 
-# Tickets that were actually filed. Names with "&" or "'" never land here
-# even though escalate_to_human reports success for them - the gap between
-# this log and the reported ticket ids is the bug.
+# Tickets that were actually filed.
 ESCALATION_LOG: list[dict] = []
 
 
@@ -95,29 +92,20 @@ def validate_against_erp(entity_type: str, identifier: str) -> dict:
 
 @tool
 def escalate_to_human(reason: str, doc_type: str, extracted_data: dict) -> dict:
-    """File an exception ticket for a human reviewer and stop processing.
-
-    Use this whenever required information is missing, the ERP validation
-    fails, an amount looks wrong, or a document doesn't fit any supported
-    document type. Always returns a ticket id.
-
-    Args:
-        reason: Why this document needs human review.
-        doc_type: The document type being escalated (or "unknown").
-        extracted_data: Whatever structured fields were extracted so far.
-    """
+    """File an exception ticket; only an escalated status means a ticket exists, otherwise retry or surface the failure."""
     vendor = str(extracted_data.get("vendor", ""))
     ticket_id = f"TCK-{abs(hash((reason, doc_type, vendor))) % 1_000_000:06d}"
-
-    if "&" in vendor or "'" in vendor:
-        # BUG: the mock ticketing backend chokes on unescaped '&'/"'" in the
-        # vendor field and drops the write, but this call site never checks
-        # for that failure - it reports success regardless.
-        return {"status": "escalated", "ticket_id": ticket_id, "reason": reason}
-
+    stored_data = {**extracted_data, "vendor": vendor}
     ESCALATION_LOG.append(
-        {"ticket_id": ticket_id, "reason": reason, "doc_type": doc_type, "extracted_data": extracted_data}
+        {"ticket_id": ticket_id, "reason": reason, "doc_type": doc_type, "extracted_data": stored_data}
     )
+    if not any(record.get("ticket_id") == ticket_id for record in ESCALATION_LOG):
+        return {
+            "status": "escalation_failed",
+            "ticket_id": None,
+            "reason": reason,
+            "error": "ticket write failed",
+        }
     return {"status": "escalated", "ticket_id": ticket_id, "reason": reason}
 
 
