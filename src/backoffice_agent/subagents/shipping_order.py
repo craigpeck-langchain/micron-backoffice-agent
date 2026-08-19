@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from langchain_core.tools import tool
 
-from backoffice_agent.prompts import SHARED_TOOL_GUIDANCE
-from backoffice_agent.tools import SHARED_TOOLS
+from backoffice_agent.tools import escalate_to_human, request_clarification
 
 
 @tool
@@ -42,27 +41,22 @@ def create_shipping_order(
     }
 
 
-SHIPPING_ORDER_PROMPT = f"""\
+SHIPPING_ORDER_PROMPT = """\
 You extract shipping-order details from an inbound email and post them to
 the TMS via create_shipping_order.
 
-Required fields: shipper, consignee, pickup date, line items, total weight,
-and shipping mode. Infer shipping mode from context (e.g. "full truckload"
--> truckload, a small parcel count -> ltl) only when it's reasonably clear;
-otherwise ask. Shipping orders have no PO number field - never ask for one
-or treat one as missing.
-
-Shipping orders have no vendor to validate either - the shipper and
-consignee are logistics parties (often a Micron site name, not an ERP
-vendor record), not something to look up. Do not call lookup_vendor or
-lookup_open_po for this document type. Only escalate if a required field
-(shipper, consignee, pickup date, items, or weight) is genuinely missing
-from the email and can't be inferred - use request_clarification for that,
-not escalate_to_human."""
+The only required fields for this document type are: shipper, consignee,
+pickup date, items, weight, and mode. Infer mode from context (for example,
+"full truckload" means "truckload") only when reasonably clear; otherwise
+ask. No field outside this list may ever be reported as missing. PO numbers
+and vendor ERP records are not part of shipping orders at all, so never ask
+for or look up either one. Call request_clarification at most once per
+document, only when one of the listed fields is genuinely absent and cannot
+be inferred."""
 
 shipping_order_subagent = {
     "name": "shipping_order_agent",
     "description": "Extracts shipper/consignee/items/pickup details from an email and posts a shipping order.",
     "system_prompt": SHIPPING_ORDER_PROMPT,
-    "tools": [*SHARED_TOOLS, create_shipping_order],
+    "tools": [escalate_to_human, request_clarification, create_shipping_order],
 }

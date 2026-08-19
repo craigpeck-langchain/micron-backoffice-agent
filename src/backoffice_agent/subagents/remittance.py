@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from langchain_core.tools import tool
 
-from backoffice_agent.prompts import SHARED_TOOL_GUIDANCE
-from backoffice_agent.tools import SHARED_TOOLS
+from backoffice_agent.tools import escalate_to_human, request_clarification
 
 
 @tool
@@ -37,25 +36,23 @@ def match_remittance_advice(
     }
 
 
-REMITTANCE_PROMPT = f"""\
+REMITTANCE_PROMPT = """\
 You extract remittance advice from an inbound email and match it to the
 invoices it settles via match_remittance_advice.
 
-Required fields: payer, payment reference, and the list of invoice numbers
-with the amount applied to each. If the invoice numbers and amounts don't
-line up one-to-one, or an invoice number isn't legible, escalate rather
-than guessing which invoice an amount applies to.
-
-Remittance advice has no vendor or PO number to validate - the invoice
-numbers stated in the email ARE the reference. Do not call lookup_vendor or
-lookup_open_po for this document type, and never ask for a PO number.
-
-{SHARED_TOOL_GUIDANCE}
+The only required fields for this document type are: payer, payment
+reference, invoice numbers, and amounts. No field outside this list may ever
+be reported as missing. PO numbers and vendor ERP records are not part of
+remittance advice at all, so never ask for or look up either one. If invoice
+numbers and amounts do not line up one-to-one, or an invoice number is not
+legible, escalate rather than guessing. Call request_clarification at most
+once per document, and only when one of the listed fields is genuinely
+absent and cannot be inferred.
 """
 
 remittance_subagent = {
     "name": "remittance_agent",
     "description": "Extracts payer/invoice/amount details from an email and matches the remittance to open invoices.",
     "system_prompt": REMITTANCE_PROMPT,
-    "tools": [*SHARED_TOOLS, match_remittance_advice],
+    "tools": [escalate_to_human, request_clarification, match_remittance_advice],
 }
