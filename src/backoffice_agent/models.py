@@ -16,5 +16,15 @@ def make_chat_model(*, temperature: float = 0.2) -> ChatOpenAI:
         # LC_GATEWAY_KEY, a machine/deployment-scoped service key
         # (lsv2_sk_...), separate from a personal workspace token.
         gateway_key = os.environ["LC_GATEWAY_KEY"]
-        return ChatOpenAI(model=model_name, temperature=temperature, base_url=base_url, api_key=gateway_key)
-    return ChatOpenAI(model=model_name, temperature=temperature)
+        return ChatOpenAI(
+            model=model_name,
+            temperature=temperature,
+            base_url=base_url,
+            api_key=gateway_key,
+            metadata={"ls_provider": "openai", "ls_model_name": model_name},
+        )
+    return ChatOpenAI(
+        model=model_name,
+        temperature=temperature,
+        metadata={"ls_provider": "openai", "ls_model_name": model_name},
+    )

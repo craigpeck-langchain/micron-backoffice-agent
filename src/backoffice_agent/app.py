@@ -28,12 +28,28 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from langsmith import Client
+from langsmith import Client, get_current_run_tree
 from pydantic import BaseModel, Field
 
 app = FastAPI()
 
 _langsmith_client = Client()
+
+
+def record_posting_review(score: float, run_id: uuid.UUID | None = None) -> None:
+    """Record human review feedback for the current or supplied root run."""
+    resolved_run_id = run_id
+    if resolved_run_id is None:
+        run_tree = get_current_run_tree()
+        resolved_run_id = run_tree.id if run_tree is not None else None
+    if resolved_run_id is None:
+        raise ValueError("A root run_id is required to record posting review feedback")
+    _langsmith_client.create_feedback(
+        run_id=resolved_run_id,
+        key="posting_reviewed",
+        score=score,
+        trace_id=resolved_run_id,
+    )
 
 
 class FeedbackRequest(BaseModel):

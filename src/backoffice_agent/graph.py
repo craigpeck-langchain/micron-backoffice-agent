@@ -16,10 +16,13 @@ Exported as `graph` for LangSmith / LangGraph CLI deployment.
 
 from __future__ import annotations
 
+import os
+
 from dotenv import load_dotenv
 from langchain_core.messages import AIMessage
 from deepagents import create_deep_agent
 from langgraph.graph import END, START, StateGraph
+from langsmith import get_current_run_tree
 
 from backoffice_agent.classify import classify_document as run_classifier
 from backoffice_agent.models import make_chat_model
@@ -62,6 +65,15 @@ def ingest_email(state: BackofficeState) -> dict:
 def classify_document(state: BackofficeState) -> dict:
     """Deterministic doc-type routing - not the deep agent."""
     result = run_classifier(state["email_text"])
+    run_tree = get_current_run_tree()
+    if run_tree is not None:
+        run_tree.extra.setdefault("metadata", {}).update(
+            {
+                "doc_type": result.doc_type,
+                "classifier_confidence": result.confidence,
+                "confidence_bucket": "high" if result.confidence >= CONFIDENCE_THRESHOLD else "low",
+            }
+        )
     return {"doc_type": result.doc_type, "confidence": result.confidence}
 
 
@@ -88,6 +100,24 @@ def deep_agent_node(state: BackofficeState) -> dict:
     )
     final = sub_result["messages"][-1]
     content = getattr(final, "content", None) or (final.get("content") if isinstance(final, dict) else "")
+    outcome = "posted"
+    all_content = " ".join(
+        str(getattr(message, "content", None) or (message.get("content") if isinstance(message, dict) else ""))
+        for message in sub_result["messages"]
+    )
+    if "clarification_requested" in all_content:
+        outcome = "clarification_requested"
+    elif "escalated" in all_content:
+        outcome = "escalated"
+    run_tree = get_current_run_tree()
+    if run_tree is not None:
+        subagent = {
+            "shipping_order": "shipping_order_agent",
+            "purchase_order": "purchase_order_agent",
+            "invoice": "invoice_agent",
+            "remittance_advice": "remittance_agent",
+        }.get(doc_type, "unknown")
+        run_tree.extra.setdefault("metadata", {}).update({"subagent": subagent, "outcome": outcome})
     return {"messages": [AIMessage(content=content)]}
 
 
@@ -101,6 +131,11 @@ def request_clarification_node(state: BackofficeState) -> dict:
             "extracted_data": {"email_excerpt": email_text[:280]},
         }
     )
+    run_tree = get_current_run_tree()
+    if run_tree is not None:
+        run_tree.extra.setdefault("metadata", {}).update(
+            {"outcome": "escalated", "doc_type": state.get("doc_type") or "unknown"}
+        )
     reply = (
         "This email doesn't look like a shipping order, purchase order, invoice, "
         "or remittance advice I can process automatically. I've routed it to a "
@@ -125,7 +160,12 @@ def _build_graph():
     )
     builder.add_edge("deep_agent", END)
     builder.add_edge("request_clarification", END)
-    return builder.compile()
+    return builder.compile().with_config(
+        {
+            "run_name": "backoffice_intake",
+            "metadata": {"environment": os.getenv("APP_ENV", "production")},
+        }
+    )
 
 
 graph = _build_graph()

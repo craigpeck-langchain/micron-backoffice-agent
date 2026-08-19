@@ -11,12 +11,14 @@ and every run whose fixture carries a planted flaw gets an explicit negative
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
+os.environ["APP_ENV"] = "replay"
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
@@ -44,7 +46,6 @@ def main() -> None:
 
     for i, fixture in enumerate(fixtures, start=1):
         email_text = format_email(fixture["email"])
-        run_name = f"email::{fixture['scenario']}"
         metadata = {
             "scenario": fixture["scenario"],
             "doc_type_expected": fixture["doc_type_expected"],
@@ -55,7 +56,7 @@ def main() -> None:
             try:
                 graph.invoke(
                     {"messages": [{"role": "user", "content": email_text}]},
-                    config={"run_name": run_name, "tags": ["populate_traces"], "metadata": metadata},
+                    config={"tags": ["replay", "populate_traces"], "metadata": metadata},
                 )
             except Exception as exc:  # noqa: BLE001 - keep going through the batch
                 print(f"  [{i}/{len(fixtures)}] {fixture['scenario']}: ERROR {exc}")
