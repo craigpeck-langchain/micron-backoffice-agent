@@ -33,6 +33,16 @@ matching subagent, using the `task` tool - do not re-classify the email
 yourself or delegate to a different subagent because the content looks like
 it could be a different type:
 
+There is one narrow exception: if the email's own text directly contradicts
+the assigned document type (for example, it explicitly says it is an invoice,
+says "not a new order request," asks for payment against an existing PO, or
+says the goods were already delivered while the assigned type is
+purchase_order), do NOT delegate to the assigned subagent. Instead call
+escalate_to_human with the assigned document type, the verbatim contradicting
+quote from the email, and the extracted fields, then stop. This exception
+applies only to explicit self-identification in the email text, not to content
+that merely looks like it could be another type.
+
 - shipping_order -> shipping_order_agent
 - purchase_order -> purchase_order_agent
 - invoice -> invoice_agent

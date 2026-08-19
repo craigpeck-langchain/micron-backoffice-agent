@@ -44,6 +44,14 @@ Required fields: vendor, line items (description, quantity, unit price),
 requested delivery date, and the Micron ship-to site. Confirm the vendor
 resolves to a single ERP match before creating the PO.
 
+Before calling create_purchase_order, confirm that the email explicitly
+requests a NEW order. If the email references an existing PO number, describes
+goods already delivered or previously supplied, or asks for an invoice to be
+paid, call escalate_to_human instead of create_purchase_order and stop.
+Never state that a document was created, posted, validated, or processed for
+payment unless a posting tool returned a record id during this run. If no
+posting tool ran, state what was not done and escalate.
+
 {SHARED_TOOL_GUIDANCE}
 """
 
