@@ -29,8 +29,8 @@ export const ThreadView: FC = () => (
 const ThreadEmpty: FC = () => (
   <ThreadPrimitive.Empty>
     <div className="anim-fade-in flex flex-1 flex-col items-center justify-center py-20 text-center">
-      <div className="surface-elevated mb-5 flex h-16 w-16 items-center justify-center rounded-2xl text-[var(--primary)]">
-        <MicronMark className="h-9 w-9" />
+      <div className="surface-elevated mb-5 flex h-16 items-center justify-center rounded-2xl px-6">
+        <MicronMark className="h-8 w-auto" />
       </div>
       <h2 className="text-2xl font-semibold tracking-tight">
         Back-Office Document Agent
@@ -58,9 +58,50 @@ const UserMessage: FC = () => (
   </MessagePrimitive.Root>
 );
 
+const DOC_TYPE_LABELS: Record<string, string> = {
+  shipping_order: "Shipping order",
+  purchase_order: "Purchase order",
+  invoice: "Invoice",
+  remittance_advice: "Remittance advice",
+  out_of_scope: "Out of scope",
+};
+
+/**
+ * classify_document is a plain LangGraph node (not an LLM call) that writes
+ * `doc_type`/`confidence` to graph state rather than appending a message -
+ * but LangGraph's messages-tuple stream mode still surfaces every node's
+ * raw return value as a chunk for introspection, so it arrives here as if
+ * it were an assistant message. Rather than hide it, render it as a small
+ * classification chip - it's a genuinely useful, on-theme window into the
+ * deterministic routing step of the graph.
+ */
+const tryParseClassification = (text: string): { docType: string; confidence: number } | null => {
+  try {
+    const parsed = JSON.parse(text.trim());
+    if (parsed && typeof parsed.doc_type === "string" && typeof parsed.confidence === "number") {
+      return { docType: parsed.doc_type, confidence: parsed.confidence };
+    }
+  } catch {
+    /* not JSON, not a classification chunk */
+  }
+  return null;
+};
+
+const ClassificationChip: FC<{ docType: string; confidence: number }> = ({ docType, confidence }) => (
+  <div className="flex items-center gap-1.5 self-start rounded-full border border-[var(--border-subtle)] bg-[var(--muted)] px-3 py-1 text-xs text-[var(--muted-foreground)]">
+    <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)]" />
+    Classified as <span className="font-medium text-[var(--foreground)]">{DOC_TYPE_LABELS[docType] ?? docType}</span>
+    <span className="text-[var(--muted-foreground)]">({Math.round(confidence * 100)}% confidence)</span>
+  </div>
+);
+
 const AssistantTextPart: FC = () => {
   const part = useMessagePartText();
   if (!part.text) return null;
+  const classification = tryParseClassification(part.text);
+  if (classification) {
+    return <ClassificationChip docType={classification.docType} confidence={classification.confidence} />;
+  }
   return (
     <div className="max-w-[90%] rounded-2xl rounded-bl-sm border border-[var(--border-subtle)] bg-[var(--surface)] px-4 py-2.5 text-sm leading-relaxed text-[var(--foreground)] shadow-[var(--shadow-bubble)]">
       <StreamdownTextPrimitive />

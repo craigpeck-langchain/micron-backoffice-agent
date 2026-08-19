@@ -50,15 +50,18 @@ def _last_human_text(messages: list) -> str:
 
 
 def ingest_email(state: BackofficeState) -> dict:
-    """Normalize the inbound email text. A distinct traced span for intake."""
+    """Normalize the inbound email text into its own state field.
+
+    A distinct traced span for intake. Does NOT append to `messages` -
+    doing so would duplicate the user's turn in the chat UI.
+    """
     email_text = _last_human_text(state["messages"]).strip()
-    return {"messages": [{"role": "user", "content": email_text}]}
+    return {"email_text": email_text}
 
 
 def classify_document(state: BackofficeState) -> dict:
     """Deterministic doc-type routing - not the deep agent."""
-    email_text = _last_human_text(state["messages"])
-    result = run_classifier(email_text)
+    result = run_classifier(state["email_text"])
     return {"doc_type": result.doc_type, "confidence": result.confidence}
 
 
@@ -71,7 +74,7 @@ def route_after_classification(state: BackofficeState) -> str:
 
 
 def deep_agent_node(state: BackofficeState) -> dict:
-    email_text = _last_human_text(state["messages"])
+    email_text = state["email_text"]
     doc_type = state.get("doc_type") or "unknown"
     sub_result = deep_agent.invoke(
         {
@@ -90,7 +93,7 @@ def deep_agent_node(state: BackofficeState) -> dict:
 
 def request_clarification_node(state: BackofficeState) -> dict:
     """Classifier couldn't confidently place this email in a supported type."""
-    email_text = _last_human_text(state["messages"])
+    email_text = state["email_text"]
     result = escalate_to_human.invoke(
         {
             "reason": "Email did not confidently match a supported document type.",

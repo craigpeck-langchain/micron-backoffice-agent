@@ -16,3 +16,4 @@ class BackofficeState(MessagesState):
 
     doc_type: Optional[str]
     confidence: Optional[float]
+    email_text: Optional[str]

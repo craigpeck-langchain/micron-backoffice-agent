@@ -9,10 +9,11 @@ import { isLocalDev, resolveApiKey, saveApiKey } from "./lib/auth";
 const Header: FC = () => (
   <header className="header-blur sticky top-0 z-30 flex items-center justify-between border-b border-[var(--border)] px-4 py-3 sm:px-6">
     <div className="flex items-center gap-3">
-      <MicronMark className="h-7 w-7 shrink-0 text-[var(--primary)]" />
+      <MicronMark className="h-6 w-auto shrink-0" />
+      <div className="h-6 w-px shrink-0 bg-[var(--border)]" />
       <div>
         <h1 className="text-sm font-semibold tracking-tight">
-          Micron Back-Office Document Agent
+          Back-Office Document Agent
         </h1>
         <p className="text-xs text-[var(--muted-foreground)]">
           Email intake -&gt; shipping orders, purchase orders, invoices, remittance advice

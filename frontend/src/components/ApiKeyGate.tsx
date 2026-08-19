@@ -30,9 +30,8 @@ const ApiKeyGate: FC<Props> = ({ onSubmit }) => {
         className="surface-elevated w-full max-w-md rounded-2xl p-7"
       >
         <div className="mb-5 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--primary)]">
-            <MicronMark className="h-6 w-6 text-[var(--primary)]" />
-          </div>
+          <MicronMark className="h-6 w-auto" />
+          <div className="h-6 w-px bg-[var(--border)]" />
           <h1 className="text-base font-semibold tracking-tight">
             Connect to the deployment
           </h1>

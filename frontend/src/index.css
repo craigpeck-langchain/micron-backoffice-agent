@@ -17,16 +17,16 @@
   --border: #dbe1ea;
   --border-subtle: #e5eaf1;
 
-  /* Primary accent - Micron-style cobalt blue (placeholder; swap for exact brand hex) */
-  --primary: #0033a0;
-  --primary-hover: #002678;
+  /* Primary accent - Micron brand purple, sampled from the real logo asset */
+  --primary: #8f01bc;
+  --primary-hover: #6b018d;
   --primary-foreground: #ffffff;
-  --primary-soft: rgba(0, 51, 160, 0.1);
-  --primary-ring: rgba(0, 51, 160, 0.35);
+  --primary-soft: rgba(143, 1, 188, 0.1);
+  --primary-ring: rgba(143, 1, 188, 0.35);
 
-  /* Secondary accent - teal, used for status/positive signals */
-  --accent: #0091b2;
-  --accent-bg: rgba(0, 145, 178, 0.12);
+  /* Secondary accent - warm gold, pairs with the brand purple for status/positive signals */
+  --accent: #c9962b;
+  --accent-bg: rgba(201, 150, 43, 0.12);
   --accent-foreground: #10151f;
 
   /* Status */
@@ -59,8 +59,8 @@ body {
   color: var(--foreground);
   background-color: var(--background);
   background-image:
-    radial-gradient(60rem 40rem at 18% -8%, rgba(0, 51, 160, 0.06), transparent 60%),
-    radial-gradient(52rem 38rem at 92% 4%, rgba(0, 145, 178, 0.05), transparent 60%);
+    radial-gradient(60rem 40rem at 18% -8%, rgba(143, 1, 188, 0.07), transparent 60%),
+    radial-gradient(52rem 38rem at 92% 4%, rgba(201, 150, 43, 0.05), transparent 60%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
