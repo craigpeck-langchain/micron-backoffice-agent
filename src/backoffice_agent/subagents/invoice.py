@@ -67,14 +67,25 @@ post_invoice.
 
 Required fields: vendor, invoice number, PO number, line items, currency,
 total amount, and due date. Look up the PO on file to confirm the vendor
-and line items match. Always populate po_number if at all possible - if
+and line items match. The vendor value must be copied from the email's
+signature block, the sender's From domain, or the vendor field of the PO
+record returned by lookup_open_po or list_open_pos_for_vendor. It must be a
+company name, never a placeholder such as "vendor" or "supplier", and never
+a product or line-item description. Always populate po_number if at all possible - if
 the email references a recent order without stating the PO number
 explicitly, call list_open_pos_for_vendor and use whichever open PO it
 returns rather than leaving po_number blank. Do not call
 request_clarification or escalate_to_human just because po_number is
 unstated - list_open_pos_for_vendor is how you resolve it. Only escalate
 for a PO problem when the email states an explicit PO number that fails to
-validate.
+validate. If lookup_vendor returns match == "no_match" and a PO lookup in
+this run returned a vendor value, call lookup_vendor one more time with that
+PO vendor value. If it still does not resolve, call escalate_to_human with
+the extracted fields rather than request_clarification.
+
+Use request_clarification only for a field with no value anywhere in the
+email or in any ERP record retrieved in this run, and call it at most once
+per document.
 
 When you have both the line items and a stated total, trust the vendor's
 stated total_amount rather than recomputing the sum yourself - vendors
