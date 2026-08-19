@@ -1,0 +1,11 @@
+{
+  "id": "017_invoice_normal",
+  "scenario": "normal_invoice_02",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "billing@meridiantooling.com",
+    "subject": "Invoice MT-4471 for PO-10062",
+    "body": "Hello,\n\n        Invoice MT-4471 for PO-10062: 60 CNC end mill sets at $84.00/set,\n        total $5,040.00. Payment terms net 30, due 2026-09-18.\n\n        Regards,\n        Meridian Tooling Co Billing"
+  }
+}

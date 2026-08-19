@@ -1,0 +1,11 @@
+{
+  "id": "033_flaw_currency_mismatch",
+  "scenario": "currency_mismatch_1",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "currency_mismatch",
+  "email": {
+    "from": "ap@balticcircuitworks.com",
+    "subject": "Invoice BCW-2201 for PO-10140",
+    "body": "Hi,\n\n        Invoice BCW-2201 against PO-10140: 500 units of 6-layer custom PCB\n        at $18.20/unit, total $9,100.00 USD. Due net 30 (2026-09-30).\n\n        Thanks,\n        Baltic Circuit Works AP"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/backoffice_agent/graph.py:graph"
+  },
+  "http": {
+    "app": "./src/backoffice_agent/app.py:app"
+  },
+  "env": ".env",
+  "python_version": "3.13",
+  "image_distro": "wolfi"
+}

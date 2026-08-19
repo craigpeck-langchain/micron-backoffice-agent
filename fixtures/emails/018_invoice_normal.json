@@ -1,0 +1,11 @@
+{
+  "id": "018_invoice_normal",
+  "scenario": "normal_invoice_03",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "ap@sableridgematerials.com",
+    "subject": "Invoice SR-9012 - PO-10071",
+    "body": "Hi,\n\n        Attached invoice SR-9012 against PO-10071: 25 sheets of 304\n        stainless (4x8ft, 16ga) at $210.00/sheet, total $5,250.00, due net 30\n        (2026-09-22).\n\n        Thanks,\n        Sable Ridge Materials AP"
+  }
+}

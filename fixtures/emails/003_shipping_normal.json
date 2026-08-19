@@ -1,0 +1,11 @@
+{
+  "id": "003_shipping_normal",
+  "scenario": "normal_shipping_order_03",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "logistics@vantagepointelec.com",
+    "subject": "Air freight needed - component kits to Singapore",
+    "body": "Hello,\n\n        We need to air-ship the SMD component kits (resistor + capacitor\n        assortments, 400 units combined, ~140 lbs) to the Singapore Fab as\n        soon as possible - production is waiting on these. Pickup can happen\n        tomorrow, 2026-08-21, from our San Jose warehouse.\n\n        Shipper: Vantage Point Electronics\n        Consignee: Singapore Fab - Woodlands\n\n        Regards,\n        Vantage Point Electronics Logistics"
+  }
+}

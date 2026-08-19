@@ -1,0 +1,11 @@
+{
+  "id": "038_flaw_wrong_tool",
+  "scenario": "wrong_tool_classification_2",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "wrong_tool_classification",
+  "email": {
+    "from": "billing@vantagepointelec.com",
+    "subject": "Order INV-77401 - Payment Due",
+    "body": "Hello,\n\n        Please process invoice INV-77401 against PO-10088 for payment: SMD\n        component kits as previously supplied, total $4,200.00, due net 30\n        (2026-09-24). This invoice covers goods already delivered.\n\n        Thanks,\n        Vantage Point Electronics Billing"
+  }
+}

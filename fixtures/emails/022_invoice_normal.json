@@ -1,0 +1,11 @@
+{
+  "id": "022_invoice_normal",
+  "scenario": "normal_invoice_07",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "billing@wrenfieldlogistics.com",
+    "subject": "Invoice WF-2201 for PO-10112",
+    "body": "Hi,\n\n        Invoice WF-2201 against PO-10112: dedicated truckload freight\n        service, Boise-Lehi lane, 1 unit at $2,400.00, total $2,400.00, due\n        net 15 (2026-09-05).\n\n        Thanks,\n        Wrenfield Logistics Partners Billing"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "005_shipping_normal",
+  "scenario": "normal_shipping_order_05",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "shipping@northfieldcomponents.com",
+    "subject": "LTL pickup - aluminum brackets to Boise",
+    "body": "Hello,\n\n        Please schedule an LTL pickup for the aluminum bracket shipment (480\n        units, Type-C, approx. 1,050 lbs) heading to Fab 11 in Boise. We can\n        have the pallets ready 2026-08-23.\n\n        Shipper: Northfield Components\n        Consignee: Fab 11 - Boise, ID\n\n        Thank you,\n        Northfield Components Shipping"
+  }
+}

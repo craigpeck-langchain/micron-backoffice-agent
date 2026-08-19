@@ -1,0 +1,11 @@
+{
+  "id": "031_flaw_hallucinated_po",
+  "scenario": "hallucinated_po_1",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "hallucinated_po",
+  "email": {
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice for units from your recent shipment",
+    "body": "Hi team,\n\n        Please find our invoice for the 500 aluminum brackets from your\n        recent order, at $12.40/unit, total $6,200.00, due net 30\n        (2026-09-27). Invoice number NC-9910.\n\n        Thanks,\n        Northfield Components AP Team"
+  }
+}

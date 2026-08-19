@@ -1,0 +1,11 @@
+{
+  "id": "024_remit_normal",
+  "scenario": "normal_remittance_01",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - payment to Northfield Components",
+    "body": "Hi,\n\n        This confirms payment of $5,952.00 to Northfield Components,\n        settling invoice INV-88213. Payment reference: ACH-771029.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

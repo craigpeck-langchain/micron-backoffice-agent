@@ -1,0 +1,11 @@
+{
+  "id": "032_flaw_hallucinated_po",
+  "scenario": "hallucinated_po_2",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "hallucinated_po",
+  "email": {
+    "from": "billing@meridiantooling.com",
+    "subject": "Invoice for the tooling we discussed",
+    "body": "Hello,\n\n        Attached is invoice MT-4502 for the 75 CNC end mill sets from the\n        order we discussed last month, at $84.00/set, total $6,300.00. Due\n        net 30 (2026-09-29).\n\n        Regards,\n        Meridian Tooling Co Billing"
+  }
+}

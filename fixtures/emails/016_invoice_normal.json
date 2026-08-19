@@ -1,0 +1,11 @@
+{
+  "id": "016_invoice_normal",
+  "scenario": "normal_invoice_01",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice INV-88213 for PO-10045",
+    "body": "Hi team,\n\n        Please find our invoice INV-88213 for PO-10045: 480 units of\n        precision aluminum brackets at $12.40/unit, total $5,952.00, due net\n        30 (2026-09-20).\n\n        Thanks,\n        Northfield Components AP Team"
+  }
+}

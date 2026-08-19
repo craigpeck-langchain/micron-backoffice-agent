@@ -1,0 +1,11 @@
+{
+  "id": "011_po_normal",
+  "scenario": "normal_purchase_order_03",
+  "doc_type_expected": "purchase_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "procurement.sg@micron.com",
+    "subject": "New order - SMD component kits",
+    "body": "Hello,\n\n        Please place an order with Vantage Point Electronics for 300 SMD\n        resistor kits (0603 assorted, $9.75 each) and 300 SMD capacitor kits\n        (0805 assorted, $11.25 each). Requested delivery 2026-09-08, ship to\n        Singapore Fab - Woodlands.\n\n        Thanks,\n        Singapore Fab Procurement"
+  }
+}

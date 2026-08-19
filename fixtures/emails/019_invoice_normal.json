@@ -1,0 +1,11 @@
+{
+  "id": "019_invoice_normal",
+  "scenario": "normal_invoice_04",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "billing@vantagepointelec.com",
+    "subject": "Invoice VP-33210 for PO-10088",
+    "body": "Hello,\n\n        Invoice VP-33210 against PO-10088:\n        - SMD resistor kit, 0603 assorted: 200 units @ $9.75 = $1,950.00\n        - SMD capacitor kit, 0805 assorted: 200 units @ $11.25 = $2,250.00\n\n        Total: $4,200.00. Due net 30 (2026-09-25).\n\n        Thanks,\n        Vantage Point Electronics Billing"
+  }
+}

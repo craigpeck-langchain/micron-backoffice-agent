@@ -1,0 +1,11 @@
+{
+  "id": "029_remit_normal",
+  "scenario": "normal_remittance_06",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Anchor Point Packaging",
+    "body": "Hi,\n\n        Payment reference ACH-771205 settles invoice AP-7788 for $5,550.00\n        to Anchor Point Packaging.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

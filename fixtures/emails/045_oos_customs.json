@@ -1,0 +1,11 @@
+{
+  "id": "045_oos_customs",
+  "scenario": "out_of_scope_customs_inquiry",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "broker@globalcustomsadvisors.com",
+    "subject": "HTS classification question for upcoming import",
+    "body": "Hi,\n\n        We're preparing the customs paperwork for an upcoming import and\n        need to confirm the correct HTS classification code for the\n        precision-machined aluminum components before they ship. Can someone\n        from your compliance team advise on the correct code and applicable\n        duty rate?\n\n        Thanks,\n        Global Customs Advisors"
+  }
+}

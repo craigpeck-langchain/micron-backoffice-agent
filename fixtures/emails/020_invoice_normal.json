@@ -1,0 +1,11 @@
+{
+  "id": "020_invoice_normal",
+  "scenario": "normal_invoice_05",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "ap@ironharborfab.com",
+    "subject": "Invoice IH-5567 - PO-10093",
+    "body": "Hi,\n\n        Invoice IH-5567 against PO-10093: 15 welded steel frame assemblies\n        (Rev C) at $640.00/unit, total $9,600.00, due net 30 (2026-09-24).\n\n        Thanks,\n        Iron Harbor Fabrication AP"
+  }
+}

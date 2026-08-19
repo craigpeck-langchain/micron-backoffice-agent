@@ -1,0 +1,11 @@
+{
+  "id": "001_shipping_normal",
+  "scenario": "normal_shipping_order_01",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "dispatch@sableridgematerials.com",
+    "subject": "Pickup request - stainless sheet to Fab 11",
+    "body": "Hi logistics team,\n\n        Please arrange a truckload pickup of the 304 stainless sheet order for\n        Fab 11. We have 25 sheets (4x8ft, 16ga) ready, total weight\n        approximately 9,800 lbs. We can have it ready for pickup on\n        2026-08-24.\n\n        Shipper: Sable Ridge Materials, 4100 Foundry Rd, Twin Falls, ID\n        Consignee: Fab 11 - Boise, ID\n\n        Thanks,\n        Sable Ridge Materials Dispatch"
+  }
+}

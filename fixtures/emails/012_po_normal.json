@@ -1,0 +1,11 @@
+{
+  "id": "012_po_normal",
+  "scenario": "normal_purchase_order_04",
+  "doc_type_expected": "purchase_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "ops.lehi@micron.com",
+    "subject": "Need a new PO for packaging foam",
+    "body": "Hi,\n\n        Please issue a purchase order to Anchor Point Packaging for 5,000\n        units of the custom die-cut ESD-safe foam insert at $1.85/unit.\n        Requested delivery date 2026-09-12, ship to Distribution Center -\n        Lehi, UT.\n\n        Thanks,\n        Lehi DC Operations"
+  }
+}

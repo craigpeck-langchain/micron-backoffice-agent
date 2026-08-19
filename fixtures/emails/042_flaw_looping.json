@@ -1,0 +1,11 @@
+{
+  "id": "042_flaw_looping",
+  "scenario": "agent_looping_2",
+  "doc_type_expected": "purchase_order",
+  "planted_flaw": "agent_looping",
+  "email": {
+    "from": "eng.boise@micron.com",
+    "subject": "Order more from Cascade Precision again",
+    "body": "Hi procurement,\n\n        Please order another 25 units of the precision-machined bracket\n        assembly, same as before, from Cascade Precision. Requested delivery\n        2026-09-22, ship to Fab 11 - Boise, ID.\n\n        Thanks,\n        Fab 11 Procurement"
+  }
+}

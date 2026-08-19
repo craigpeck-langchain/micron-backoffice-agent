@@ -1,0 +1,11 @@
+{
+  "id": "050_oos_internal",
+  "scenario": "out_of_scope_internal_hr",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "hr@micron.com",
+    "subject": "Open enrollment reminder - action needed by 8/31",
+    "body": "Hi all,\n\n        This is a reminder that open enrollment for benefits closes 8/31.\n        Please log into the benefits portal to make your elections if you\n        haven't already.\n\n        Thanks,\n        Micron HR"
+  }
+}

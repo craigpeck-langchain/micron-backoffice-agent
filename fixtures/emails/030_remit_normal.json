@@ -1,0 +1,11 @@
+{
+  "id": "030_remit_normal",
+  "scenario": "normal_remittance_07",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Delacroix Freight & Logistics",
+    "body": "Hi,\n\n        Payment reference WIRE-550341 settles invoice DFL-1091 for $3,120.00\n        to Delacroix Freight & Logistics.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

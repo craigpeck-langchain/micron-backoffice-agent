@@ -1,0 +1,11 @@
+{
+  "id": "041_flaw_looping",
+  "scenario": "agent_looping_1",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "agent_looping",
+  "email": {
+    "from": "ap@cascadeprecision.com",
+    "subject": "Invoice CP-4402 - Cascade Precision",
+    "body": "Hi,\n\n        Invoice CP-4402 for 40 units of precision-machined housing at\n        $96.50/unit, total $3,860.00, due net 30 (2026-09-28).\n\n        Thanks,\n        Cascade Precision AP"
+  }
+}

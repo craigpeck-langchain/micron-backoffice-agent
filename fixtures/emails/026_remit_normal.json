@@ -1,0 +1,11 @@
+{
+  "id": "026_remit_normal",
+  "scenario": "normal_remittance_03",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Iron Harbor Fabrication",
+    "body": "Hi,\n\n        Payment reference ACH-771144 settles invoice IH-5567 for $9,600.00\n        to Iron Harbor Fabrication.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "044_flaw_prompt_drift",
+  "scenario": "prompt_drift_padded_total_2",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "system_prompt_drift",
+  "email": {
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice NC-9944 for PO-10045",
+    "body": "Hi team,\n\n        Invoice NC-9944 for PO-10045: 480 units of precision aluminum\n        brackets at $12.40/unit. Total due: $6,800.00, due net 30\n        (2026-09-20).\n\n        Thanks,\n        Northfield Components AP Team"
+  }
+}

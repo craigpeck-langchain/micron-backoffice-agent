@@ -1,0 +1,11 @@
+{
+  "id": "048_oos_relationship",
+  "scenario": "out_of_scope_vendor_notice",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "notices@ironharborfab.com",
+    "subject": "Planned facility closure - Labor Day",
+    "body": "Hi,\n\n        Just a heads up that our Duluth facility will be closed for Labor\n        Day (2026-09-07) and shipping will resume 2026-09-08. No action\n        needed on your end - just wanted to flag this in case you're\n        planning any pickups around that date.\n\n        Thanks,\n        Iron Harbor Fabrication"
+  }
+}

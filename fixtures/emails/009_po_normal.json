@@ -1,0 +1,11 @@
+{
+  "id": "009_po_normal",
+  "scenario": "normal_purchase_order_01",
+  "doc_type_expected": "purchase_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "procurement.boise@micron.com",
+    "subject": "New PO needed - additional aluminum brackets",
+    "body": "Hi procurement,\n\n        We're running low on Type-C aluminum brackets ahead of the next\n        production run. Please place a new order with Northfield Components\n        for 600 units at their standard unit price ($12.40). Requested\n        delivery date is 2026-09-10, ship to Fab 11 - Boise.\n\n        Thanks,\n        Fab 11 Manufacturing Engineering"
+  }
+}

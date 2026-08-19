@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@source "../node_modules/streamdown/dist/*.js";
+
+:root {
+  /* Base surfaces - cool neutral gray, professional/enterprise */
+  --background: #f4f6f9;
+  --background-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #e9edf3;
+  --muted: #eaeef3;
+  --muted-foreground: #5b6472;
+
+  /* Text */
+  --foreground: #10151f;
+
+  /* Borders */
+  --border: #dbe1ea;
+  --border-subtle: #e5eaf1;
+
+  /* Primary accent - Micron-style cobalt blue (placeholder; swap for exact brand hex) */
+  --primary: #0033a0;
+  --primary-hover: #002678;
+  --primary-foreground: #ffffff;
+  --primary-soft: rgba(0, 51, 160, 0.1);
+  --primary-ring: rgba(0, 51, 160, 0.35);
+
+  /* Secondary accent - teal, used for status/positive signals */
+  --accent: #0091b2;
+  --accent-bg: rgba(0, 145, 178, 0.12);
+  --accent-foreground: #10151f;
+
+  /* Status */
+  --danger: #b3261e;
+  --danger-bg: rgba(179, 38, 30, 0.08);
+  --danger-border: rgba(179, 38, 30, 0.22);
+
+  /* Elevation */
+  --shadow-bubble: 0 2px 10px -8px rgba(16, 21, 31, 0.25);
+  --shadow-elevated: 0 1px 2px rgba(16, 21, 31, 0.06), 0 16px 32px -24px rgba(16, 21, 31, 0.25);
+
+  /* Radii */
+  --radius-bubble: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(60rem 40rem at 18% -8%, rgba(0, 51, 160, 0.06), transparent 60%),
+    radial-gradient(52rem 38rem at 92% 4%, rgba(0, 145, 178, 0.05), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.composer {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, var(--surface), var(--background-elevated));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px -16px rgba(16, 21, 31, 0.3);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.composer:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring), 0 8px 28px -14px rgba(0, 51, 160, 0.4);
+}
+
+.surface-elevated {
+  background: linear-gradient(180deg, var(--surface), var(--background-elevated));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+}
+
+.focus-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.focus-glow:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+.header-blur {
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background: rgba(244, 246, 249, 0.82);
+}
+
+main {
+  overflow-anchor: none;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--surface-hover);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes slide-up-fade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}
+
+.anim-msg {
+  animation: slide-up-fade 220ms ease-out both;
+}
+.anim-fade-in {
+  animation: fade-in 220ms ease-out both;
+}
+
+.flaw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  padding: 0.05rem 0.5rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}

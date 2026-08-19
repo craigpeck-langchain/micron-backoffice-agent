@@ -1,0 +1,11 @@
+{
+  "id": "040_flaw_credit_memo",
+  "scenario": "missing_credit_memo_2",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "missing_credit_memo_capability",
+  "email": {
+    "from": "billing@anchorpointpkg.com",
+    "subject": "Invoice AP-7801 - includes return credit from prior shipment",
+    "body": "Hello,\n\n        Invoice AP-7801 against PO-10101: 3,000 units foam insert at\n        $1.85/unit, subtotal $5,550.00. We're also crediting $310.00 for the\n        over-shipped units returned from our last delivery. Net total due:\n        $5,240.00, due net 30 (2026-09-26).\n\n        Thanks,\n        Anchor Point Packaging Billing"
+  }
+}

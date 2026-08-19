@@ -1,0 +1,11 @@
+{
+  "id": "036_flaw_escalation_drop",
+  "scenario": "escalation_drop_2",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "escalation_silent_failure",
+  "email": {
+    "from": "billing@omalleyindustrial.com",
+    "subject": "Invoice OM-6602 referencing PO-10062",
+    "body": "Hello,\n\n        Invoice OM-6602 against PO-10062: 30 units of industrial fastener\n        assortment at $22.00/unit, total $660.00. Due net 30 (2026-09-19).\n\n        Thanks,\n        O'Malley Industrial Supply Billing"
+  }
+}

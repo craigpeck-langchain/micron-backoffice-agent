@@ -1,0 +1,11 @@
+{
+  "id": "047_oos_garbled",
+  "scenario": "out_of_scope_garbled_ocr",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "scans@sharedmailbox.internal",
+    "subject": "Fwd: Scanned document 08-19",
+    "body": "FWD from scanner -\n\n        I\u2013nvo1c3 N0. ####7 P0#: 10-0-45 Qty: 4B0 U/P: 1?.40\n        T0tal: $$,,952.00 rn3t 3o d4ys  ***PAGE 1 OF 1 - LOW QUALITY SCAN***\n        [illegible] [illegible] pls advise\n\n        - front desk"
+  }
+}

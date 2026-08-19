@@ -1,0 +1,11 @@
+{
+  "id": "021_invoice_normal",
+  "scenario": "normal_invoice_06",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "billing@anchorpointpkg.com",
+    "subject": "Invoice AP-7788 for PO-10101",
+    "body": "Hello,\n\n        Invoice AP-7788 against PO-10101: 3,000 units of ESD-safe foam\n        insert, custom die-cut, at $1.85/unit, total $5,550.00, due net 30\n        (2026-09-26).\n\n        Thanks,\n        Anchor Point Packaging Billing"
+  }
+}

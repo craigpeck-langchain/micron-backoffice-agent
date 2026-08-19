@@ -1,0 +1,11 @@
+{
+  "id": "039_flaw_credit_memo",
+  "scenario": "missing_credit_memo_1",
+  "doc_type_expected": "invoice",
+  "planted_flaw": "missing_credit_memo_capability",
+  "email": {
+    "from": "ap@ironharborfab.com",
+    "subject": "Invoice IH-5602 with partial credit for damaged units",
+    "body": "Hi,\n\n        Invoice IH-5602 against PO-10093: 15 welded steel frame assemblies\n        at $640.00/unit, subtotal $9,600.00. Two units arrived damaged in\n        transit, so we're applying a credit of -$1,280.00 for those units.\n        Net amount due: $8,320.00, net 30 (2026-09-24).\n\n        Thanks,\n        Iron Harbor Fabrication AP"
+  }
+}

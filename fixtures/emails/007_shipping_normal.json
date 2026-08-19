@@ -1,0 +1,11 @@
+{
+  "id": "007_shipping_normal",
+  "scenario": "normal_shipping_order_07",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "facilities.boise@micron.com",
+    "subject": "Inter-site transfer - surplus equipment Boise to Lehi",
+    "body": "Hi logistics,\n\n        We have surplus test equipment racks to transfer from Fab 11 in\n        Boise to the Lehi distribution center for redeployment. Estimated\n        weight 4,500 lbs, LTL is fine. Target pickup 2026-08-28.\n\n        Shipper: Fab 11 - Boise, ID\n        Consignee: Distribution Center - Lehi, UT\n\n        Thanks,\n        Micron Facilities - Boise"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "049_oos_marketing",
+  "scenario": "out_of_scope_marketing",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "sales@vantagepointelec.com",
+    "subject": "New 2027 component catalog now available",
+    "body": "Hi,\n\n        Our new 2027 catalog is live with expanded SMD component options and\n        volume pricing tiers. Let us know if you'd like a walkthrough with\n        your account rep - we're happy to set up time.\n\n        Best,\n        Vantage Point Electronics Sales"
+  }
+}

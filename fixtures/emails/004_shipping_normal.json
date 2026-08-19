@@ -1,0 +1,11 @@
+{
+  "id": "004_shipping_normal",
+  "scenario": "normal_shipping_order_04",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "ops@anchorpointpkg.com",
+    "subject": "Truckload - foam inserts to Lehi DC",
+    "body": "Hi team,\n\n        Ready to ship the ESD-safe foam insert order (3,000 units, roughly\n        6,200 lbs) via full truckload to the Lehi distribution center.\n        Pickup available 2026-08-25 from our Reno plant.\n\n        Shipper: Anchor Point Packaging\n        Consignee: Distribution Center - Lehi, UT\n\n        Thanks,\n        Anchor Point Packaging Ops"
+  }
+}

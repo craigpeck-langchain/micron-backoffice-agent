@@ -1,0 +1,11 @@
+{
+  "id": "023_invoice_normal",
+  "scenario": "normal_invoice_08",
+  "doc_type_expected": "invoice",
+  "planted_flaw": null,
+  "email": {
+    "from": "ap@cascadeprecisionmanufacturing.com",
+    "subject": "Invoice CPM-6640 - PO-10125",
+    "body": "Hello,\n\n        Invoice CPM-6640 against PO-10125: 40 units of precision-machined\n        housing, Rev B, at $96.50/unit, total $3,860.00, due net 30\n        (2026-09-28).\n\n        Thanks,\n        Cascade Precision Manufacturing AP"
+  }
+}

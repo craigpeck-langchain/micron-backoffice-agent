@@ -1,0 +1,11 @@
+{
+  "id": "008_shipping_normal",
+  "scenario": "normal_shipping_order_08",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "export@cascadeprecisionmachining.com",
+    "subject": "Ocean freight booking - machined parts to Singapore",
+    "body": "Hello,\n\n        We need to book ocean freight for a container of precision-machined\n        parts heading to the Singapore Fab. Total weight approximately\n        18,000 lbs. Ready for pickup at our Long Beach staging warehouse on\n        2026-09-02.\n\n        Shipper: Cascade Precision Machining\n        Consignee: Singapore Fab - Woodlands\n\n        Regards,\n        Cascade Precision Machining Export Desk"
+  }
+}

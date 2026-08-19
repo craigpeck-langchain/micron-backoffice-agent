@@ -1,0 +1,11 @@
+{
+  "id": "027_remit_normal",
+  "scenario": "normal_remittance_04",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Vantage Point Electronics, two invoices",
+    "body": "Hi,\n\n        Payment reference WIRE-550298 settles two Vantage Point Electronics\n        invoices: VP-33210 for $4,200.00 and VP-33255 for $2,975.00.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

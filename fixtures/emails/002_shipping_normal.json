@@ -1,0 +1,11 @@
+{
+  "id": "002_shipping_normal",
+  "scenario": "normal_shipping_order_02",
+  "doc_type_expected": "shipping_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "shipping@ironharborfab.com",
+    "subject": "LTL delivery - welded frame assemblies for Manassas",
+    "body": "Good morning,\n\n        We'd like to schedule an LTL delivery of the welded steel frame\n        assemblies (15 units, Rev C) to the Manassas site. Estimated weight\n        is 2,100 lbs. Requested pickup date is 2026-08-26 from our Duluth,\n        MN facility.\n\n        Shipper: Iron Harbor Fabrication\n        Consignee: Manassas Site - Manassas, VA\n\n        Best,\n        Iron Harbor Fabrication Shipping"
+  }
+}

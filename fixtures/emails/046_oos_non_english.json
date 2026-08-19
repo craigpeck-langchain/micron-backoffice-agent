@@ -1,0 +1,11 @@
+{
+  "id": "046_oos_non_english",
+  "scenario": "out_of_scope_non_english",
+  "doc_type_expected": "out_of_scope",
+  "planted_flaw": null,
+  "email": {
+    "from": "facturacion@proveedorlatam.com",
+    "subject": "Factura FP-2291 por orden de compra",
+    "body": "Estimados,\n\n        Adjunto la factura FP-2291 correspondiente a la orden de compra\n        reciente: 200 unidades de conectores industriales a $8.40/unidad,\n        total $1,680.00. Vencimiento a 30 dias.\n\n        Saludos,\n        Proveedor LatAm - Facturacion"
+  }
+}

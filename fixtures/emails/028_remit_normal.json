@@ -1,0 +1,11 @@
+{
+  "id": "028_remit_normal",
+  "scenario": "normal_remittance_05",
+  "doc_type_expected": "remittance_advice",
+  "planted_flaw": null,
+  "email": {
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Meridian Tooling Co",
+    "body": "Hi,\n\n        Payment reference ACH-771190 settles invoice MT-4471 for $5,040.00\n        to Meridian Tooling Co.\n\n        Thanks,\n        Micron Treasury"
+  }
+}

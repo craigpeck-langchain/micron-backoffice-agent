@@ -1,0 +1,402 @@
+[
+  {
+    "id": "001_shipping_normal",
+    "scenario": "normal_shipping_order_01",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "dispatch@sableridgematerials.com",
+    "subject": "Pickup request - stainless sheet to Fab 11"
+  },
+  {
+    "id": "002_shipping_normal",
+    "scenario": "normal_shipping_order_02",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "shipping@ironharborfab.com",
+    "subject": "LTL delivery - welded frame assemblies for Manassas"
+  },
+  {
+    "id": "003_shipping_normal",
+    "scenario": "normal_shipping_order_03",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "logistics@vantagepointelec.com",
+    "subject": "Air freight needed - component kits to Singapore"
+  },
+  {
+    "id": "004_shipping_normal",
+    "scenario": "normal_shipping_order_04",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "ops@anchorpointpkg.com",
+    "subject": "Truckload - foam inserts to Lehi DC"
+  },
+  {
+    "id": "005_shipping_normal",
+    "scenario": "normal_shipping_order_05",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "shipping@northfieldcomponents.com",
+    "subject": "LTL pickup - aluminum brackets to Boise"
+  },
+  {
+    "id": "006_shipping_normal",
+    "scenario": "normal_shipping_order_06",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "dispatch@meridiantooling.com",
+    "subject": "Truckload shipment - tooling to Manassas"
+  },
+  {
+    "id": "007_shipping_normal",
+    "scenario": "normal_shipping_order_07",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "facilities.boise@micron.com",
+    "subject": "Inter-site transfer - surplus equipment Boise to Lehi"
+  },
+  {
+    "id": "008_shipping_normal",
+    "scenario": "normal_shipping_order_08",
+    "doc_type_expected": "shipping_order",
+    "planted_flaw": null,
+    "from": "export@cascadeprecisionmachining.com",
+    "subject": "Ocean freight booking - machined parts to Singapore"
+  },
+  {
+    "id": "009_po_normal",
+    "scenario": "normal_purchase_order_01",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "procurement.boise@micron.com",
+    "subject": "New PO needed - additional aluminum brackets"
+  },
+  {
+    "id": "010_po_normal",
+    "scenario": "normal_purchase_order_02",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "eng.manassas@micron.com",
+    "subject": "Order more stainless sheet"
+  },
+  {
+    "id": "011_po_normal",
+    "scenario": "normal_purchase_order_03",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "procurement.sg@micron.com",
+    "subject": "New order - SMD component kits"
+  },
+  {
+    "id": "012_po_normal",
+    "scenario": "normal_purchase_order_04",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "ops.lehi@micron.com",
+    "subject": "Need a new PO for packaging foam"
+  },
+  {
+    "id": "013_po_normal",
+    "scenario": "normal_purchase_order_05",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "eng.boise@micron.com",
+    "subject": "Order welded frame assemblies"
+  },
+  {
+    "id": "014_po_normal",
+    "scenario": "normal_purchase_order_06",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "eng.manassas@micron.com",
+    "subject": "New tooling order"
+  },
+  {
+    "id": "015_po_normal",
+    "scenario": "normal_purchase_order_07",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": null,
+    "from": "procurement.boise@micron.com",
+    "subject": "Order precision-machined parts"
+  },
+  {
+    "id": "016_invoice_normal",
+    "scenario": "normal_invoice_01",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice INV-88213 for PO-10045"
+  },
+  {
+    "id": "017_invoice_normal",
+    "scenario": "normal_invoice_02",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "billing@meridiantooling.com",
+    "subject": "Invoice MT-4471 for PO-10062"
+  },
+  {
+    "id": "018_invoice_normal",
+    "scenario": "normal_invoice_03",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "ap@sableridgematerials.com",
+    "subject": "Invoice SR-9012 - PO-10071"
+  },
+  {
+    "id": "019_invoice_normal",
+    "scenario": "normal_invoice_04",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "billing@vantagepointelec.com",
+    "subject": "Invoice VP-33210 for PO-10088"
+  },
+  {
+    "id": "020_invoice_normal",
+    "scenario": "normal_invoice_05",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "ap@ironharborfab.com",
+    "subject": "Invoice IH-5567 - PO-10093"
+  },
+  {
+    "id": "021_invoice_normal",
+    "scenario": "normal_invoice_06",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "billing@anchorpointpkg.com",
+    "subject": "Invoice AP-7788 for PO-10101"
+  },
+  {
+    "id": "022_invoice_normal",
+    "scenario": "normal_invoice_07",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "billing@wrenfieldlogistics.com",
+    "subject": "Invoice WF-2201 for PO-10112"
+  },
+  {
+    "id": "023_invoice_normal",
+    "scenario": "normal_invoice_08",
+    "doc_type_expected": "invoice",
+    "planted_flaw": null,
+    "from": "ap@cascadeprecisionmanufacturing.com",
+    "subject": "Invoice CPM-6640 - PO-10125"
+  },
+  {
+    "id": "024_remit_normal",
+    "scenario": "normal_remittance_01",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - payment to Northfield Components"
+  },
+  {
+    "id": "025_remit_normal",
+    "scenario": "normal_remittance_02",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - two invoices settled, Sable Ridge Materials"
+  },
+  {
+    "id": "026_remit_normal",
+    "scenario": "normal_remittance_03",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Iron Harbor Fabrication"
+  },
+  {
+    "id": "027_remit_normal",
+    "scenario": "normal_remittance_04",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Vantage Point Electronics, two invoices"
+  },
+  {
+    "id": "028_remit_normal",
+    "scenario": "normal_remittance_05",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Meridian Tooling Co"
+  },
+  {
+    "id": "029_remit_normal",
+    "scenario": "normal_remittance_06",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Anchor Point Packaging"
+  },
+  {
+    "id": "030_remit_normal",
+    "scenario": "normal_remittance_07",
+    "doc_type_expected": "remittance_advice",
+    "planted_flaw": null,
+    "from": "treasury@micron.com",
+    "subject": "Remittance advice - Delacroix Freight & Logistics"
+  },
+  {
+    "id": "031_flaw_hallucinated_po",
+    "scenario": "hallucinated_po_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "hallucinated_po",
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice for units from your recent shipment"
+  },
+  {
+    "id": "032_flaw_hallucinated_po",
+    "scenario": "hallucinated_po_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "hallucinated_po",
+    "from": "billing@meridiantooling.com",
+    "subject": "Invoice for the tooling we discussed"
+  },
+  {
+    "id": "033_flaw_currency_mismatch",
+    "scenario": "currency_mismatch_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "currency_mismatch",
+    "from": "ap@balticcircuitworks.com",
+    "subject": "Invoice BCW-2201 for PO-10140"
+  },
+  {
+    "id": "034_flaw_currency_mismatch",
+    "scenario": "currency_mismatch_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "currency_mismatch",
+    "from": "ap@balticcircuitworks.com",
+    "subject": "Invoice BCW-2214 for PO-10140"
+  },
+  {
+    "id": "035_flaw_escalation_drop",
+    "scenario": "escalation_drop_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "escalation_silent_failure",
+    "from": "ap@delacroixfreight.com",
+    "subject": "Invoice DFL-1102 for PO-99981"
+  },
+  {
+    "id": "036_flaw_escalation_drop",
+    "scenario": "escalation_drop_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "escalation_silent_failure",
+    "from": "billing@omalleyindustrial.com",
+    "subject": "Invoice OM-6602 referencing PO-10062"
+  },
+  {
+    "id": "037_flaw_wrong_tool",
+    "scenario": "wrong_tool_classification_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "wrong_tool_classification",
+    "from": "ap@sableridgematerials.com",
+    "subject": "Invoice for your recent order PO-10071"
+  },
+  {
+    "id": "038_flaw_wrong_tool",
+    "scenario": "wrong_tool_classification_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "wrong_tool_classification",
+    "from": "billing@vantagepointelec.com",
+    "subject": "Order INV-77401 - Payment Due"
+  },
+  {
+    "id": "039_flaw_credit_memo",
+    "scenario": "missing_credit_memo_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "missing_credit_memo_capability",
+    "from": "ap@ironharborfab.com",
+    "subject": "Invoice IH-5602 with partial credit for damaged units"
+  },
+  {
+    "id": "040_flaw_credit_memo",
+    "scenario": "missing_credit_memo_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "missing_credit_memo_capability",
+    "from": "billing@anchorpointpkg.com",
+    "subject": "Invoice AP-7801 - includes return credit from prior shipment"
+  },
+  {
+    "id": "041_flaw_looping",
+    "scenario": "agent_looping_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "agent_looping",
+    "from": "ap@cascadeprecision.com",
+    "subject": "Invoice CP-4402 - Cascade Precision"
+  },
+  {
+    "id": "042_flaw_looping",
+    "scenario": "agent_looping_2",
+    "doc_type_expected": "purchase_order",
+    "planted_flaw": "agent_looping",
+    "from": "eng.boise@micron.com",
+    "subject": "Order more from Cascade Precision again"
+  },
+  {
+    "id": "043_flaw_prompt_drift",
+    "scenario": "prompt_drift_padded_total_1",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "system_prompt_drift",
+    "from": "ap@sableridgematerials.com",
+    "subject": "Invoice SR-9077 for PO-10071"
+  },
+  {
+    "id": "044_flaw_prompt_drift",
+    "scenario": "prompt_drift_padded_total_2",
+    "doc_type_expected": "invoice",
+    "planted_flaw": "system_prompt_drift",
+    "from": "ap@northfieldcomponents.com",
+    "subject": "Invoice NC-9944 for PO-10045"
+  },
+  {
+    "id": "045_oos_customs",
+    "scenario": "out_of_scope_customs_inquiry",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "broker@globalcustomsadvisors.com",
+    "subject": "HTS classification question for upcoming import"
+  },
+  {
+    "id": "046_oos_non_english",
+    "scenario": "out_of_scope_non_english",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "facturacion@proveedorlatam.com",
+    "subject": "Factura FP-2291 por orden de compra"
+  },
+  {
+    "id": "047_oos_garbled",
+    "scenario": "out_of_scope_garbled_ocr",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "scans@sharedmailbox.internal",
+    "subject": "Fwd: Scanned document 08-19"
+  },
+  {
+    "id": "048_oos_relationship",
+    "scenario": "out_of_scope_vendor_notice",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "notices@ironharborfab.com",
+    "subject": "Planned facility closure - Labor Day"
+  },
+  {
+    "id": "049_oos_marketing",
+    "scenario": "out_of_scope_marketing",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "sales@vantagepointelec.com",
+    "subject": "New 2027 component catalog now available"
+  },
+  {
+    "id": "050_oos_internal",
+    "scenario": "out_of_scope_internal_hr",
+    "doc_type_expected": "out_of_scope",
+    "planted_flaw": null,
+    "from": "hr@micron.com",
+    "subject": "Open enrollment reminder - action needed by 8/31"
+  }
+]

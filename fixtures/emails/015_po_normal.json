@@ -1,0 +1,11 @@
+{
+  "id": "015_po_normal",
+  "scenario": "normal_purchase_order_07",
+  "doc_type_expected": "purchase_order",
+  "planted_flaw": null,
+  "email": {
+    "from": "procurement.boise@micron.com",
+    "subject": "Order precision-machined parts",
+    "body": "Hi procurement,\n\n        Please place an order with Cascade Precision Machining for 25 units\n        of the precision-machined bracket assembly at $145.00/unit.\n        Requested delivery date 2026-09-22, ship to Fab 11 - Boise, ID.\n\n        Thanks,\n        Fab 11 Procurement"
+  }
+}
